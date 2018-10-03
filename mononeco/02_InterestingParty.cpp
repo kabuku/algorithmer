@@ -54,24 +54,38 @@ ll lcm(ll a, ll b) {
     return a / gcd(a, b) * b;
 }
 
-class KiwiJuiceEasy {
+class InterestingParty {
 public:
-    vector<int>
-    thePouring(vector<int> &capacityList, vector<int> &amountList, vector<int> &fromIdList, vector<int> &toIdList) {
-        REP(i, fromIdList.size()) {
-            pour(i, capacityList, amountList, fromIdList, toIdList);
+    int bestInvitation(vector<string> first, vector<string> second) {
+        int ans = 0;
+        for (string &keyword : first) {
+            int count = 0;
+            for (string &comparedKeyword : first) {
+                if (keyword == comparedKeyword) {
+                    count++;
+                }
+            }
+            for (string &comparedKeyword : second) {
+                if (keyword == comparedKeyword) {
+                    count++;
+                }
+            }
+            ans = max(ans, count);
         }
-        return amountList;
-    }
-
-public:
-    int
-    pour(int &i, vector<int> &capacityList, vector<int> &amountList, vector<int> &fromIdList, vector<int> &toIdList) {
-        int from = fromIdList[i];
-        int to = toIdList[i];
-        int moveAmount = min(amountList[from], capacityList[to] - amountList[to]);
-        amountList[from] -= moveAmount;
-        amountList[to] += moveAmount;
-        return 0;
+        for (string &keyword : second) {
+            int count = 0;
+            for (string &comparedKeyword : first) {
+                if (keyword == comparedKeyword) {
+                    count++;
+                }
+            }
+            for (string &comparedKeyword : second) {
+                if (keyword == comparedKeyword) {
+                    count++;
+                }
+            }
+            ans = max(ans, count);
+        }
+        return ans;
     }
 };

@@ -54,24 +54,21 @@ ll lcm(ll a, ll b) {
     return a / gcd(a, b) * b;
 }
 
-class KiwiJuiceEasy {
+class ThePalindrome {
 public:
-    vector<int>
-    thePouring(vector<int> &capacityList, vector<int> &amountList, vector<int> &fromIdList, vector<int> &toIdList) {
-        REP(i, fromIdList.size()) {
-            pour(i, capacityList, amountList, fromIdList, toIdList);
+    int find(string s) {
+        FOR(i, s.size() / 2, s.size()) {
+            bool isPalindromes = true;
+            FOR(j, i, s.size()) {
+                if(s[i] != s[j - i - 1]) {
+                    isPalindromes = false;
+                    break;
+                }
+            }
+            if (isPalindromes) {
+                return (int)(2 * i - s.size());
+            }
         }
-        return amountList;
-    }
-
-public:
-    int
-    pour(int &i, vector<int> &capacityList, vector<int> &amountList, vector<int> &fromIdList, vector<int> &toIdList) {
-        int from = fromIdList[i];
-        int to = toIdList[i];
-        int moveAmount = min(amountList[from], capacityList[to] - amountList[to]);
-        amountList[from] -= moveAmount;
-        amountList[to] += moveAmount;
-        return 0;
+        return (int)s.size();
     }
 };

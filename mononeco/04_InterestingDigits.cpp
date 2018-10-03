@@ -54,24 +54,16 @@ ll lcm(ll a, ll b) {
     return a / gcd(a, b) * b;
 }
 
-class KiwiJuiceEasy {
+class InterestingDigits {
 public:
-    vector<int>
-    thePouring(vector<int> &capacityList, vector<int> &amountList, vector<int> &fromIdList, vector<int> &toIdList) {
-        REP(i, fromIdList.size()) {
-            pour(i, capacityList, amountList, fromIdList, toIdList);
+    vector<int> digits(int base) {
+        int core = base - 1;
+        vector<int> ans;
+        REP(i, core) {
+            if (i != 0 && core % (i + 1) == 0) {
+                ans.push_back(i + 1);
+            }
         }
-        return amountList;
-    }
-
-public:
-    int
-    pour(int &i, vector<int> &capacityList, vector<int> &amountList, vector<int> &fromIdList, vector<int> &toIdList) {
-        int from = fromIdList[i];
-        int to = toIdList[i];
-        int moveAmount = min(amountList[from], capacityList[to] - amountList[to]);
-        amountList[from] -= moveAmount;
-        amountList[to] += moveAmount;
-        return 0;
+        return ans;
     }
 };

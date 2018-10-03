@@ -54,24 +54,17 @@ ll lcm(ll a, ll b) {
     return a / gcd(a, b) * b;
 }
 
-class KiwiJuiceEasy {
+class Cryptography {
 public:
-    vector<int>
-    thePouring(vector<int> &capacityList, vector<int> &amountList, vector<int> &fromIdList, vector<int> &toIdList) {
-        REP(i, fromIdList.size()) {
-            pour(i, capacityList, amountList, fromIdList, toIdList);
+    long long encrypt(vector<int> numbers) {
+        ll ans = 1;
+        int minNumber = numbers[0];
+        for (int number : numbers) {
+            minNumber = min(minNumber, number);
+            ans *= number;
         }
-        return amountList;
-    }
-
-public:
-    int
-    pour(int &i, vector<int> &capacityList, vector<int> &amountList, vector<int> &fromIdList, vector<int> &toIdList) {
-        int from = fromIdList[i];
-        int to = toIdList[i];
-        int moveAmount = min(amountList[from], capacityList[to] - amountList[to]);
-        amountList[from] -= moveAmount;
-        amountList[to] += moveAmount;
-        return 0;
+        ans /= minNumber;
+        ans *= minNumber + 1;
+        return ans;
     }
 };
