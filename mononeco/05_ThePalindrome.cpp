@@ -57,18 +57,18 @@ ll lcm(ll a, ll b) {
 class ThePalindrome {
 public:
     int find(string s) {
-        FOR(i, s.size() / 2, s.size()) {
-            bool isPalindromes = true;
-            FOR(j, i, s.size()) {
-                if(s[i] != s[j - i - 1]) {
-                    isPalindromes = false;
-                    break;
+        int append = 0;
+        while (true) {
+            bool isPalindrome = true;
+            FOR(i, append, (s.size() + append) / 2) {
+                if (s[i] != s[s.size() + append - i - 1]) {
+                    isPalindrome = false;
                 }
             }
-            if (isPalindromes) {
-                return (int)(2 * i - s.size());
+            if (isPalindrome) {
+                return (int) s.size() + append;
             }
+            append++;
         }
-        return (int)s.size();
     }
 };
